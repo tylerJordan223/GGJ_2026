@@ -42,6 +42,8 @@ public class DialogueSystem : MonoBehaviour
         skip = false;
         choosing = false;
         choice_num = -1;
+
+        this.gameObject.SetActive(false);
     }
 
     //enables the controls for dialogue
@@ -60,6 +62,12 @@ public class DialogueSystem : MonoBehaviour
         //make sure it refreshes itself for debug purposes
         if (OnCreateStory != null) OnCreateStory(story);
 
+        //connect to function within code to affect global reputation
+        story.BindExternalFunction("ChangeReputation", (float amount) =>
+        {
+            Global.Instance.reputation += amount;
+        });
+
         DialogueLoop();
     }
 
@@ -71,13 +79,10 @@ public class DialogueSystem : MonoBehaviour
         input.Dialogue.Choose.Disable();
     }
 
-    private void Update()
-    {
-    }
-
     //coroutine to actually run dialogue
     private void DialogueLoop()
     {
+        Debug.Log("Reputation is: " + Global.Instance.reputation);
 
         //goes until it reaches a stopping point (choice/end)
         if(story.canContinue)
@@ -91,14 +96,8 @@ public class DialogueSystem : MonoBehaviour
             //you are now making a choice
             choosing = true;
 
-            //go through each choice and have them all start printing
-            for(int i = 0; i < story.currentChoices.Count; i++)
-            {
-                GameObject c = Instantiate(choice);
-                c.transform.SetParent(choices.transform);
-                StartCoroutine(PrintDialogue(c.GetComponent<TextMeshProUGUI>(), story.currentChoices[i].text.Trim()));
-            }
-            StartCoroutine(making_choice());
+            //initialize choices
+            StartCoroutine(InitializeChoices());
         }
     }
 
@@ -141,6 +140,39 @@ public class DialogueSystem : MonoBehaviour
         }
 
         printing = false;
+    }
+
+    //loop to initialize choices
+    private IEnumerator InitializeChoices()
+    {
+        //go through each choice and initialize them
+        for (int i = 0; i < story.currentChoices.Count; i++)
+        {
+            GameObject c = Instantiate(choice);
+            c.transform.SetParent(choices.transform, false);
+
+            //scale properly
+            RectTransform rt = c.GetComponent<RectTransform>();
+            rt.localScale = Vector3.one;
+            rt.localPosition = Vector3.one;
+        }
+
+        //wait a frame to scale right
+        yield return new WaitForEndOfFrame();
+
+        //rebuild the canvas first so the choices don't scale weird
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(choices.GetComponent<RectTransform>());
+
+        //have them start typing out
+        for (int i = 0; i < story.currentChoices.Count; i++)
+        {
+            TextMeshProUGUI c = choices.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
+            StartCoroutine(PrintDialogue(c.GetComponent<TextMeshProUGUI>(), story.currentChoices[i].text.Trim()));
+        }
+
+        //move to making the choices
+        StartCoroutine(making_choice());
     }
 
     //loop for the choices
@@ -192,12 +224,20 @@ public class DialogueSystem : MonoBehaviour
         }
         else
         {
+            Debug.Log(story.canContinue + " " + choosing + " " + story.currentChoices.Count);
+
             //if theres still content to go through
             if (story.canContinue || !choosing)
             {
+                //check to end dialogue if necessary
+                if (!story.canContinue && story.currentChoices.Count == 0)
+                {
+                    //end dialogue
+                    UIManager.Instance.EndDialogue();
+                }
                 DialogueLoop();
             }
-            else if(story.currentChoices.Count > 0)
+            else if (story.currentChoices.Count > 0)
             {
                 //pick option
                 story.ChooseChoiceIndex(choice_num);
