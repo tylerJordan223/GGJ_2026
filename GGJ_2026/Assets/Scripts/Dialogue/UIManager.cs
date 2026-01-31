@@ -59,9 +59,10 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator DeactivateDelay()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         dialogue.SetActive(false);
         dialogue_active = false;
+        MainCharacter.Instance.ActivatePlayer();
     }
     #endregion deactivation
 
@@ -73,15 +74,5 @@ public class UIManager : MonoBehaviour
         anim = GetComponent<Animator>();
 
         input = new Global_Input();
-        input.Player.Next.performed += Activate;
-        input.Player.Next.Enable();
-    }
-
-    void Activate(InputAction.CallbackContext context)
-    {
-        if(!dialogue_active)
-        {
-            ActivateDialogue();
-        }
     }
 }
