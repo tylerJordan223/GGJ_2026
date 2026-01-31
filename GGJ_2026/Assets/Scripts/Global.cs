@@ -32,10 +32,12 @@ public class Global : MonoBehaviour
 
     //global variables
     public float reputation;
+    public int layer;
 
     private void Start()
     {
         //idea is to go as low as zero and as high as 100
         reputation = 50f;
+        layer = 0;
     }
 }

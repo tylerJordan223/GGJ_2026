@@ -11,12 +11,12 @@ public class RoomScript : MonoBehaviour
 
     public RoomHandler parent;
 
-    private bool active;
-    private float fade;
+    public bool active;
+    public float fade;
 
     private void Awake()
     {
-        parent = transform.parent.GetComponent<RoomHandler>();
+        parent = transform.parent.parent.GetComponent<RoomHandler>();
 
         room_cam = transform.GetChild(0).gameObject;
         room_cam.SetActive(false);
@@ -64,5 +64,11 @@ public class RoomScript : MonoBehaviour
                 fade = 1.0f;
             }
         }
+    }
+
+    public void Restart()
+    {
+        fade = 1.0f;
+        active = true;
     }
 }

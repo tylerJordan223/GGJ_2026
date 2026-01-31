@@ -35,7 +35,7 @@ public class TeleportScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //get the closer teleporter and work based on that
-        if(collision.CompareTag("Player"))
+        if(collision.CompareTag("Player") && Global.Instance.layer == 0)
         {
             input.Player.Enable();
 
@@ -59,9 +59,12 @@ public class TeleportScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //disable the notification if leaving
-        active_point.GetChild(0).gameObject.SetActive(false);
-        input.Player.Disable();
+        if(collision.CompareTag("Player") && Global.Instance.layer == 0)
+        {
+            //disable the notification if leaving
+            active_point.GetChild(0).gameObject.SetActive(false);
+            input.Player.Disable();
+        }
     }
 
     void StartTeleport(InputAction.CallbackContext context)
