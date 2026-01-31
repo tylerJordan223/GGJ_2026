@@ -31,13 +31,26 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dialogue;
     public bool dialogue_active;
 
+    #region activation
+    //turn on the dialogue object and animate it
     public void ActivateDialogue()
     {
         dialogue_active = true;
         dialogue.SetActive(true);
         anim.SetBool("active", true);
+        StartCoroutine(ActivateDelay());
     }
 
+    //actually start writing the dialogue
+    public IEnumerator ActivateDelay()
+    {
+        yield return new WaitForSeconds(1.8f);
+        dialogue.GetComponent<DialogueSystem>().BeginDialogue();
+    }
+    #endregion activation
+
+    #region deactivation
+    //turn off dialogue and move back to normal
     public void DeactivateDialogue()
     {
         anim.SetBool("active", false);
@@ -50,12 +63,7 @@ public class UIManager : MonoBehaviour
         dialogue.SetActive(false);
         dialogue_active = false;
     }
-
-    //actually start writing the dialogue
-    public void StartDialogue()
-    {
-        dialogue.GetComponent<DialogueSystem>().BeginDialogue();
-    }
+    #endregion deactivation
 
     private Global_Input input;
     private Animator anim;
