@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c01d4cef9b028c4385897b252cd0960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSystem
-  inkJSON: {fileID: 4900000, guid: 16873951c29ab2147a44e86ed52bc93a, type: 3}
+  inkJSON: {fileID: 4900000, guid: 8d6431aa94f11194a97d5c64c72f8c5f, type: 3}
   choice: {fileID: 6909203764080432833, guid: 710b8f089d9dbec4f8aca79e53380c7b, type: 3}
   choices: {fileID: 188886561}
   dialogue_box: {fileID: 1488970295}
