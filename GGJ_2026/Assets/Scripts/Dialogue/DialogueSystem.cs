@@ -49,10 +49,6 @@ public class DialogueSystem : MonoBehaviour
     //enables the controls for dialogue
     private void OnEnable()
     {
-        //add the controls
-        input.Dialogue.Choose.performed += Click;
-        input.Dialogue.Choice.performed += Choose;
-        input.Dialogue.Choose.Enable();
 
         //clear the choices and start the story
         ClearChoices();
@@ -67,6 +63,15 @@ public class DialogueSystem : MonoBehaviour
         {
             Global.Instance.reputation += amount;
         });
+    }
+
+    //function used to start the actual dialogue
+    public void BeginDialogue()
+    {
+        //add the controls
+        input.Dialogue.Choose.performed += Click;
+        input.Dialogue.Choice.performed += Choose;
+        input.Dialogue.Choose.Enable();
 
         DialogueLoop();
     }
@@ -233,7 +238,8 @@ public class DialogueSystem : MonoBehaviour
                 if (!story.canContinue && story.currentChoices.Count == 0)
                 {
                     //end dialogue
-                    UIManager.Instance.EndDialogue();
+                    dialogue_box.text = "";
+                    UIManager.Instance.DeactivateDialogue();
                 }
                 DialogueLoop();
             }

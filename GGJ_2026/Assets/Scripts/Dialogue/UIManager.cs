@@ -1,4 +1,5 @@
 using GameInput;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,32 +31,49 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dialogue;
     public bool dialogue_active;
 
-    public void StartDialogue()
+    public void ActivateDialogue()
     {
         dialogue_active = true;
         dialogue.SetActive(true);
+        anim.SetBool("active", true);
     }
 
-    public void EndDialogue()
+    public void DeactivateDialogue()
     {
-        dialogue_active = false;
+        anim.SetBool("active", false);
+        StartCoroutine(DeactivateDelay());
+    }
+
+    private IEnumerator DeactivateDelay()
+    {
+        yield return new WaitForSeconds(1.0f);
         dialogue.SetActive(false);
+        dialogue_active = false;
+    }
+
+    //actually start writing the dialogue
+    public void StartDialogue()
+    {
+        dialogue.GetComponent<DialogueSystem>().BeginDialogue();
     }
 
     private Global_Input input;
+    private Animator anim;
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
+
         input = new Global_Input();
-        input.Player.Jump.performed += Activate;
-        input.Player.Jump.Enable();
+        input.Player.Next.performed += Activate;
+        input.Player.Next.Enable();
     }
 
     void Activate(InputAction.CallbackContext context)
     {
         if(!dialogue_active)
         {
-            StartDialogue();
+            ActivateDialogue();
         }
     }
 }
