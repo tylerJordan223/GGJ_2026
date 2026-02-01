@@ -16,10 +16,10 @@ public class MinigameScript : MonoBehaviour
 
     [Range(1.0f, 10.0f)]
     public float width = 5.0f;
-    [Range(0.01f, 1.0f)]
-    public float speed = 0.5f;
+    [Range(1f, 5f)]
+    public float speed = 1f;
     [Range(0.1f, 1f)]
-    public float time = 0.1f;
+    public float time = 0.5f;
     private float max_time;
 
     private int direction;
