@@ -33,6 +33,7 @@ public class DialogueSystem : MonoBehaviour
     private bool printing;
     private bool skip;
     private bool choosing;
+    private bool ending;
     private int choice_num;
 
     private void Awake()
@@ -41,6 +42,7 @@ public class DialogueSystem : MonoBehaviour
         printing = false;
         skip = false;
         choosing = false;
+        ending = false;
         choice_num = -1;
 
         this.gameObject.SetActive(false);
@@ -49,6 +51,7 @@ public class DialogueSystem : MonoBehaviour
     //enables the controls for dialogue
     private void OnEnable()
     {
+        ending = false;
 
         //clear the choices and start the story
         ClearChoices();
@@ -87,8 +90,6 @@ public class DialogueSystem : MonoBehaviour
     //coroutine to actually run dialogue
     private void DialogueLoop()
     {
-        Debug.Log("Reputation is: " + Global.Instance.reputation);
-
         //goes until it reaches a stopping point (choice/end)
         if(story.canContinue)
         {
@@ -231,14 +232,16 @@ public class DialogueSystem : MonoBehaviour
         {
             Debug.Log(story.canContinue + " " + choosing + " " + story.currentChoices.Count);
 
-            //if theres still content to go through
             if (story.canContinue || !choosing)
             {
                 //check to end dialogue if necessary
-                if (!story.canContinue && story.currentChoices.Count == 0)
+                if (!story.canContinue && story.currentChoices.Count == 0 && !ending)
                 {
+                    ending = true;
                     //end dialogue
                     dialogue_box.text = "";
+                    input.Dialogue.Choice.Disable();
+                    Global.Instance.NextAct();
                     UIManager.Instance.DeactivateDialogue();
                 }
                 DialogueLoop();

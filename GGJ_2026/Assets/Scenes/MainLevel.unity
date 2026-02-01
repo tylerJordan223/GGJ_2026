@@ -3917,6 +3917,11 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!1 &1278909158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6813107091707975930, guid: f30d33df0a6d2c84f8c1e4962c7a73dd, type: 3}
+  m_PrefabInstance: {fileID: 7907543433929352526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1278909159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8443521403743214725, guid: f30d33df0a6d2c84f8c1e4962c7a73dd, type: 3}
@@ -10163,9 +10168,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ba6c500fb4b6344b175adf4888dbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Global
+  act_objects:
+  - list: []
+  - list:
+    - {fileID: 1278909158}
+  - list:
+    - {fileID: 6813107091250469751}
   reputation: 0
   layer: 0
   score: 0
+  act_num: 0
 --- !u!114 &1766169868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15300,6 +15312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeaGame
       objectReference: {fileID: 0}
+    - target: {fileID: 171109171009700046, guid: 00913039ce07c9840aae18df90f4f17f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6928927593772856038, guid: 00913039ce07c9840aae18df90f4f17f, type: 3}
       propertyPath: m_SortingOrder
       value: 3
@@ -15349,6 +15365,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00913039ce07c9840aae18df90f4f17f, type: 3}
+--- !u!1 &6813107091250469751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 171109171009700046, guid: 00913039ce07c9840aae18df90f4f17f, type: 3}
+  m_PrefabInstance: {fileID: 585701390830689763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7907543433929352526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15360,6 +15381,10 @@ PrefabInstance:
     - target: {fileID: 6813107091707975930, guid: f30d33df0a6d2c84f8c1e4962c7a73dd, type: 3}
       propertyPath: m_Name
       value: SweepGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813107091707975930, guid: f30d33df0a6d2c84f8c1e4962c7a73dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8443521403743214725, guid: f30d33df0a6d2c84f8c1e4962c7a73dd, type: 3}
       propertyPath: m_LocalPosition.x
