@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     #endregion singleton
 
     [SerializeField] private GameObject dialogue;
+    [SerializeField] private GameObject minigame;
     public bool dialogue_active;
 
     #region activation
@@ -74,5 +75,17 @@ public class UIManager : MonoBehaviour
         anim = GetComponent<Animator>();
 
         input = new Global_Input();
+        input.UI.Click.performed += debugClick;
+        input.UI.Click.Enable();
+    }
+
+    public void StartMinigame()
+    {
+        minigame.SetActive(true);
+    }
+
+    void debugClick(InputAction.CallbackContext context)
+    {
+        StartMinigame();
     }
 }

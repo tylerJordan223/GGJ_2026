@@ -33,6 +33,7 @@ public class Global : MonoBehaviour
     //global variables
     public float reputation;
     public int layer;
+    public float score;
 
     private void Start()
     {
