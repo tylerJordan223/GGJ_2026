@@ -75,17 +75,10 @@ public class UIManager : MonoBehaviour
         anim = GetComponent<Animator>();
 
         input = new Global_Input();
-        input.UI.Click.performed += debugClick;
-        input.UI.Click.Enable();
     }
 
     public void StartMinigame()
     {
         minigame.SetActive(true);
-    }
-
-    void debugClick(InputAction.CallbackContext context)
-    {
-        StartMinigame();
     }
 }
