@@ -20,6 +20,9 @@ public class MainCharacter : MonoBehaviour
     public float moveSpeed;
     private Rigidbody2D rb;
 
+    //animation related things
+    private Animator anim;
+
     private void Awake()
     {
         //handling the singleton
@@ -32,6 +35,7 @@ public class MainCharacter : MonoBehaviour
         instance = this;
         gi = new Global_Input();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     public bool canControl;
@@ -52,11 +56,28 @@ public class MainCharacter : MonoBehaviour
         ActivatePlayer();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector2 movement = gi.Player.Move.ReadValue<Vector2>();
 
-        rb.linearVelocity = movement * moveSpeed;
+        if (movement != Vector2.zero)
+        {
+            anim.SetBool("moving", true);
+        }
+        else
+        {
+            anim.SetBool("moving", false);
+        }
+
+        if(movement.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if(movement.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        rb.linearVelocity = new Vector2(movement.x * moveSpeed, 0.0f);
     }
 
     void Interact(InputAction.CallbackContext context)
