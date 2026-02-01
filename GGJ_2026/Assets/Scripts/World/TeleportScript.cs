@@ -28,7 +28,6 @@ public class TeleportScript : MonoBehaviour
     {
         InteractAlert = transform.GetChild(0).gameObject;
         anim = GetComponent<Animator>();
-        anim.Play("teleportDownStair", 0, 1.0f);
     }
 
     private void OnEnable()
@@ -38,6 +37,7 @@ public class TeleportScript : MonoBehaviour
 
         input.Player.Next.performed += StartTeleport;
         input.Player.Disable();
+        anim.Play("teleportDownStair", 0, 1.0f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -91,11 +91,13 @@ public class TeleportScript : MonoBehaviour
             anim.SetBool("active", true);
             //wait a second for the animation
             yield return new WaitForSeconds(3.0f);
+            //wait a second
+            yield return new WaitForSeconds(1.0f);
             //teleport
             MainCharacter.Instance.transform.position = teleport_point.position;
-            //wait a second
+            yield return new WaitForSeconds(1.0f);
             anim.SetBool("active", false);
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(2.25f);
             //enable player
             MainCharacter.Instance.ActivatePlayer();
         }
@@ -104,21 +106,19 @@ public class TeleportScript : MonoBehaviour
             if(anim.GetBool("up"))
             {
                 anim.SetBool("up", false);
-                //animate
                 anim.SetBool("down", true);
                 //wait a second for the animation
                 yield return new WaitForSeconds(1.0f);
                 //teleport
                 MainCharacter.Instance.transform.position = teleport_point.position;
                 //wait a second
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForSeconds(1.5f);
                 //enable player
                 MainCharacter.Instance.ActivatePlayer();
             }
             else
             {
                 anim.SetBool("down", false);
-                //animate
                 anim.SetBool("up", true);
                 //wait a second for the animation
                 yield return new WaitForSeconds(3.0f);

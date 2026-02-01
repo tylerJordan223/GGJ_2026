@@ -509,7 +509,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 8.677029, y: 10.00234}
+  m_Offset: {x: 8.750469, y: 8.577585}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -519,7 +519,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.5505981, y: 5.4010305}
+  m_Size: {x: 1.5823746, y: 2.5515213}
   m_EdgeRadius: 0
 --- !u!114 &72112113
 MonoBehaviour:
@@ -1626,7 +1626,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 8.677029, y: 10.00234}
+  m_Offset: {x: 8.724501, y: 8.435102}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1636,7 +1636,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.5505981, y: 5.4010305}
+  m_Size: {x: 1.8094215, y: 2.2665482}
   m_EdgeRadius: 0
 --- !u!114 &452582305
 MonoBehaviour:
@@ -2410,7 +2410,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 8.677029, y: 10.00234}
+  m_Offset: {x: 8.618278, y: 8.38664}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2420,7 +2420,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.5505981, y: 5.4010305}
+  m_Size: {x: 1.4354954, y: 2.1696224}
   m_EdgeRadius: 0
 --- !u!114 &784437841
 MonoBehaviour:
@@ -10101,7 +10101,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 8.677029, y: 10.00234}
+  m_Offset: {x: 8.630605, y: 8.340155}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10111,7 +10111,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.5505981, y: 5.4010305}
+  m_Size: {x: 1.6803875, y: 2.0766497}
   m_EdgeRadius: 0
 --- !u!114 &1734387774
 MonoBehaviour:
