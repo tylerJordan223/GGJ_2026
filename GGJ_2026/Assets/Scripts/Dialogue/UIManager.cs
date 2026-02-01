@@ -36,6 +36,7 @@ public class UIManager : MonoBehaviour
     //turn on the dialogue object and animate it
     public void ActivateDialogue()
     {
+        MainCharacter.Instance.DeactivatePlayer(false);
         dialogue_active = true;
         dialogue.SetActive(true);
         anim.SetBool("active", true);
@@ -55,6 +56,7 @@ public class UIManager : MonoBehaviour
     public void DeactivateDialogue()
     {
         anim.SetBool("active", false);
+        LadyScript.Instance.TransitionPosition();
         StartCoroutine(DeactivateDelay());
     }
 
@@ -75,6 +77,8 @@ public class UIManager : MonoBehaviour
         anim = GetComponent<Animator>();
 
         input = new Global_Input();
+
+        ActivateDialogue();
     }
 
     public void StartMinigame()

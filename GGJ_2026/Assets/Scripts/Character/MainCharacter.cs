@@ -85,7 +85,6 @@ public class MainCharacter : MonoBehaviour
         //if you can interact
         if(interactable && canControl)
         {
-            DeactivatePlayer(false);
             UIManager.Instance.ActivateDialogue();
             //disable the activate thingy
             transform.Find("InteractAlert").gameObject.SetActive(false);

@@ -45,7 +45,7 @@ public class Global : MonoBehaviour
     private void Start()
     {
         //idea is to go as low as zero and as high as 100
-        reputation = 50f;
+        reputation = 75f;
         layer = 0;
         act_num = 0;
     }
@@ -56,8 +56,9 @@ public class Global : MonoBehaviour
         //if theres anything left that shouldnt be (or lady)
         if (act_objects[act_num].list.Count > 0)
         {
-            foreach(GameObject o in act_objects[0].list)
+            foreach(GameObject o in act_objects[act_num].list)
             {
+                Debug.Log("GONE");
                 o.SetActive(false);
             }
         }
@@ -71,7 +72,6 @@ public class Global : MonoBehaviour
             {
                 foreach (GameObject o in act_objects[act_num].list)
                 {
-                    Debug.Log("TRUE!!!");
                     o.SetActive(true);
                 }
             }
