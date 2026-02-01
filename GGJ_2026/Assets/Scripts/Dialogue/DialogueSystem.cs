@@ -2,6 +2,7 @@ using GameInput;
 using Ink.Runtime;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -16,7 +17,8 @@ public class DialogueSystem : MonoBehaviour
     public Story story;
 
     //Text input
-    [SerializeField] public TextAsset inkJSON = null;
+    [SerializeField] public List<TextAsset> inkJSONs;
+    private TextAsset current_dialogue;
 
     //prefabs
     [SerializeField] GameObject choice = null;
@@ -51,13 +53,15 @@ public class DialogueSystem : MonoBehaviour
     //enables the controls for dialogue
     private void OnEnable()
     {
+        current_dialogue = inkJSONs[Global.Instance.act_num];
+
         ending = false;
 
         //clear the choices and start the story
         ClearChoices();
 
         //create new story object using input json
-        story = new Story(inkJSON.text);
+        story = new Story(current_dialogue.text);
         //make sure it refreshes itself for debug purposes
         if (OnCreateStory != null) OnCreateStory(story);
 

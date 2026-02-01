@@ -2,6 +2,7 @@ using Ink.Parsed;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Global : MonoBehaviour
@@ -58,8 +59,10 @@ public class Global : MonoBehaviour
         {
             foreach(GameObject o in act_objects[act_num].list)
             {
-                Debug.Log("GONE");
-                o.SetActive(false);
+                if(!o.IsDestroyed())
+                {
+                    o.SetActive(false);
+                }
             }
         }
 

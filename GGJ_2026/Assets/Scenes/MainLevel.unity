@@ -1058,7 +1058,7 @@ Transform:
   m_GameObject: {fileID: 190963932}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9, y: 3.3500001, z: 0}
+  m_LocalPosition: {x: 0.27, y: 1.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2140,6 +2140,22 @@ PrefabInstance:
       propertyPath: speed
       value: 1.94
       objectReference: {fileID: 0}
+    - target: {fileID: 7371111217603682715, guid: 1432ecb86d43c8f439949d960b0bd984, type: 3}
+      propertyPath: inkJSONs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7371111217603682715, guid: 1432ecb86d43c8f439949d960b0bd984, type: 3}
+      propertyPath: 'inkJSONs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4900000, guid: 6ee51a20e7e1b9d47b570886ec6cbef3, type: 3}
+    - target: {fileID: 7371111217603682715, guid: 1432ecb86d43c8f439949d960b0bd984, type: 3}
+      propertyPath: 'inkJSONs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4900000, guid: 4b1f3251f9d7ea0448167e8ed10b1086, type: 3}
+    - target: {fileID: 7371111217603682715, guid: 1432ecb86d43c8f439949d960b0bd984, type: 3}
+      propertyPath: 'inkJSONs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 4900000, guid: a0a5d90e96ece6c4e951352aaecb8481, type: 3}
     - target: {fileID: 8095786003981952342, guid: 1432ecb86d43c8f439949d960b0bd984, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

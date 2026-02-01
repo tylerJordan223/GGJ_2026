@@ -78,8 +78,15 @@ public class MinigameScript : MonoBehaviour
 
     public void End(float s)
     {
+        //math to make it a -20 to 20 scale
+        Debug.Log(s);
+        s = -s;
+        s += 200;
+        Mathf.Clamp(s, -20, 20);
+        Debug.Log(s);
+
         input.Player.Jump.Disable();
-        Global.Instance.score = s;
+        //Global.Instance.score = s;
         Destroy(HitMarkerRect.gameObject);
         TimerRect.localScale = new Vector3(max_time, TimerRect.localScale.y, TimerRect.localScale.z);
         this.gameObject.SetActive(false);
