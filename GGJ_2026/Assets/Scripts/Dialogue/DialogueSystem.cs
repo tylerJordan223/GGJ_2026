@@ -66,6 +66,10 @@ public class DialogueSystem : MonoBehaviour
         {
             Global.Instance.reputation += amount;
         });
+        story.BindExternalFunction("EndEarly", () =>
+        {
+            EndEarly();
+        });
     }
 
     //function used to start the actual dialogue
@@ -230,7 +234,6 @@ public class DialogueSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log(story.canContinue + " " + choosing + " " + story.currentChoices.Count);
 
             if (story.canContinue || !choosing)
             {
@@ -290,5 +293,15 @@ public class DialogueSystem : MonoBehaviour
                 }
             }
         }
+    }
+
+    //function to quit dialogue before its over
+    void EndEarly()
+    {
+        ending = true;
+        //end dialogue
+        dialogue_box.text = "";
+        input.Dialogue.Choice.Disable();
+        UIManager.Instance.DeactivateDialogue();
     }
 }

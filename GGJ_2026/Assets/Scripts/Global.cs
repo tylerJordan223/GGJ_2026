@@ -50,6 +50,7 @@ public class Global : MonoBehaviour
         act_num = 0;
     }
 
+    //function to move from one act to the next
     public void NextAct()
     {
         //if theres anything left that shouldnt be (or lady)
@@ -62,14 +63,17 @@ public class Global : MonoBehaviour
         }
 
         act_num += 1;
-        
+
         //enable new objects
-        if (act_objects[act_num].list.Count > 0)
+        if (act_num < act_objects.Count)
         {
-            foreach (GameObject o in act_objects[act_num].list)
+            if (act_objects[act_num].list.Count > 0)
             {
-                Debug.Log("TRUE!!!");
-                o.SetActive(true);
+                foreach (GameObject o in act_objects[act_num].list)
+                {
+                    Debug.Log("TRUE!!!");
+                    o.SetActive(true);
+                }
             }
         }
     }

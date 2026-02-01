@@ -1,15 +1,19 @@
 EXTERNAL ChangeReputation(amount)
+EXTERNAL EndEarly()
 
-- First line of content
-- Second line of content
-* good choice
-    ~ ChangeReputation(25.0)
-    response 1
-* really weird choice
-    ~ ChangeReputation(-5.0)
-    response 2
-* bad choice uh oh
-    ~ ChangeReputation(-25.0)
-    reponse 3
-- end of dialogue
--> END
+Line of Dialogue 1
+Line of Dialogue 2
+* [Choice 1]
+    ~ ChangeReputation(25)
+    thats good
+* [Choice 2]
+    ~ ChangeReputation(50)
+    thats lovely
+* [Choice 3]
+    ~ ChangeReputation(-25)
+    thats horrible
+* [Leave Dialogue]
+    alright goodbye
+    ~ EndEarly()
+    -> END
+-More dialogue here

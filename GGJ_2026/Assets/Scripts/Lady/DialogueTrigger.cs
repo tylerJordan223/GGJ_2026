@@ -6,7 +6,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            Debug.Log(MainCharacter.Instance.canControl);
             if(MainCharacter.Instance.canControl)
             {
                 MainCharacter.Instance.transform.Find("InteractAlert").gameObject.SetActive(true);
