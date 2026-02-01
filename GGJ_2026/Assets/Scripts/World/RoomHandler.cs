@@ -66,7 +66,7 @@ public class RoomHandler : MonoBehaviour
 
     public IEnumerator SwapTransition()
     {
-        MainCharacter.Instance.DeactivatePlayer();
+        MainCharacter.Instance.DeactivatePlayer(false);
         yield return new WaitForSeconds(1.0f);
         //swap front to back
         if (Background.sprite == front_layer)

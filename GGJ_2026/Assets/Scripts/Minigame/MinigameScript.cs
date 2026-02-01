@@ -28,7 +28,7 @@ public class MinigameScript : MonoBehaviour
 
     private void OnEnable()
     {
-        MainCharacter.Instance.DeactivatePlayer();
+        MainCharacter.Instance.DeactivatePlayer(false);
 
         direction = 1;
         MarkerRect = Marker.transform.GetComponent<RectTransform>();

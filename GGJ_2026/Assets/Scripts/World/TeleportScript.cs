@@ -18,9 +18,17 @@ public class TeleportScript : MonoBehaviour
     //input
     private Global_Input input;
 
+    //animation
+    private Animator anim;
+
+    //random flag
+    public bool stairs;
+
     private void Awake()
     {
         InteractAlert = transform.GetChild(0).gameObject;
+        anim = GetComponent<Animator>();
+        anim.Play("teleportDownStair", 0, 1.0f);
     }
 
     private void OnEnable()
@@ -71,19 +79,56 @@ public class TeleportScript : MonoBehaviour
     {
         input.Player.Disable();
         //disable player, pause, move players
-        MainCharacter.Instance.DeactivatePlayer();
+        MainCharacter.Instance.DeactivatePlayer(true);
         active_point.GetChild(0).gameObject.SetActive(false);
         StartCoroutine(Teleport());
     }
     private IEnumerator Teleport()
     {
-        //wait a second for the animation
-        yield return new WaitForSeconds(1.0f);
-        //teleport
-        MainCharacter.Instance.transform.position = teleport_point.position;
-        //wait a second
-        yield return new WaitForSeconds(1.0f);
-        //enable player
-        MainCharacter.Instance.ActivatePlayer();
+        if(!stairs)
+        {
+            //animate
+            anim.SetBool("active", true);
+            //wait a second for the animation
+            yield return new WaitForSeconds(3.0f);
+            //teleport
+            MainCharacter.Instance.transform.position = teleport_point.position;
+            //wait a second
+            anim.SetBool("active", false);
+            yield return new WaitForSeconds(5.0f);
+            //enable player
+            MainCharacter.Instance.ActivatePlayer();
+        }
+        else
+        {
+            if(anim.GetBool("up"))
+            {
+                anim.SetBool("up", false);
+                //animate
+                anim.SetBool("down", true);
+                //wait a second for the animation
+                yield return new WaitForSeconds(1.0f);
+                //teleport
+                MainCharacter.Instance.transform.position = teleport_point.position;
+                //wait a second
+                yield return new WaitForSeconds(1.0f);
+                //enable player
+                MainCharacter.Instance.ActivatePlayer();
+            }
+            else
+            {
+                anim.SetBool("down", false);
+                //animate
+                anim.SetBool("up", true);
+                //wait a second for the animation
+                yield return new WaitForSeconds(3.0f);
+                //teleport
+                MainCharacter.Instance.transform.position = teleport_point.position;
+                //wait a second
+                yield return new WaitForSeconds(1.0f);
+                //enable player
+                MainCharacter.Instance.ActivatePlayer();
+            }
+        }
     }
 }

@@ -85,7 +85,7 @@ public class MainCharacter : MonoBehaviour
         //if you can interact
         if(interactable && canControl)
         {
-            DeactivatePlayer();
+            DeactivatePlayer(false);
             UIManager.Instance.ActivateDialogue();
             //disable the activate thingy
             transform.Find("InteractAlert").gameObject.SetActive(false);
@@ -97,12 +97,19 @@ public class MainCharacter : MonoBehaviour
     {
         canControl = true;
         gi.Player.Enable();
+        //make visible
+        GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b, 1f);
     }
 
-    public void DeactivatePlayer()
+    public void DeactivatePlayer(bool invisible)
     {
         canControl = false;
         gi.Player.Disable();
+        if(invisible)
+        {
+            //make invisible
+            GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b, 0f);
+        }
     }
     #endregion activate/deactivate player
 }
