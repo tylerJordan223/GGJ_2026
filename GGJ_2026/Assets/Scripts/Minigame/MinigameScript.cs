@@ -80,7 +80,6 @@ public class MinigameScript : MonoBehaviour
     {
         input.Player.Jump.Disable();
         Global.Instance.score = s;
-        Debug.Log(s);
         Destroy(HitMarkerRect.gameObject);
         TimerRect.localScale = new Vector3(max_time, TimerRect.localScale.y, TimerRect.localScale.z);
         this.gameObject.SetActive(false);
