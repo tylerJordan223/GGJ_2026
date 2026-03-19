@@ -62,6 +62,7 @@ public class TeleportScript : MonoBehaviour
 
             //enable the notification point on the closer object
             active_point.GetChild(0).gameObject.SetActive(true);
+            Debug.Log(active_point.name + " " + active_point.GetChild(0).gameObject.activeSelf);
         }
     }
 
