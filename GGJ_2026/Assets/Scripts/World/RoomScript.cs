@@ -21,6 +21,14 @@ public class RoomScript : MonoBehaviour
         room_cam = transform.GetChild(0).gameObject;
         room_cam.SetActive(false);
 
+        //adjust camera size
+        float targetAspect = 16f / 9f; //1920 x 1080
+        float currentAspect = (float)Screen.width / Screen.height;
+        if(currentAspect != targetAspect)
+        {
+            Camera.main.orthographicSize = Camera.main.orthographicSize * (targetAspect / currentAspect);
+        }
+
         cover = transform.GetChild(1).GetComponent<SpriteRenderer>();
 
         active = false;
